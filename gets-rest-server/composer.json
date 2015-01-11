@@ -1,0 +1,15 @@
+{
+    "name": "petrsu/gets-rest-api",
+    "description": "A wrapper service which allows to communicate with GeTS service using REST and GeoJSON.",    
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nikita Davydovsky",
+            "email": "davydovs@cs.karelia.ru"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "marcj/php-rest-service": "*"
+    }
+}
