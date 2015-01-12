@@ -1,9 +1,14 @@
 {
     "name": "gets-web-client",
+    "author": "Nikita Davydovsky",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:davydovsky/gets-client.git"
+    },
     "private": false,
     "version": "0.0.1",
     "description": "A web client for the GeTS",
-    "repository": "https://github.com/angular/angular-seed",
+    "homepage": "https://github.com/davydovsky/gets-client/",
     "license": "MIT",
     "devDependencies": {
         "karma": "~0.10",
