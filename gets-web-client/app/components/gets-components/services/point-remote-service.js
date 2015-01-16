@@ -12,7 +12,7 @@
  * - update point;
  * - delete point.
  */
-var pointService = angular.module('pointService', ['xml', 'configService']);
+var pointService = angular.module('pointRemoteService', ['xml', 'configService']);
 
 /**
  * Use angular-xml to tranform all xml responses to js objects.
@@ -21,8 +21,8 @@ pointService.config(['$httpProvider', function ($httpProvider) {
     $httpProvider.interceptors.push('xmlHttpInterceptor');
 }]);
 
-pointService.factory('PointService', ['$http', '$log', 'x2js', 'config', 
-    function ($http, $log, x2js, config) {
+pointService.factory('PointRemoteService', ['$http', 'x2js', 'config', 
+    function ($http, x2js, config) {
         
         /**
          * Public interface
@@ -45,9 +45,9 @@ pointService.factory('PointService', ['$http', '$log', 'x2js', 'config',
                     params: {
                         auth_token: '',
                         category_id: '',
-                        title: '',
-                        latitude: '',
-                        longitude: ''
+                        title: point.geojson.properties.name,
+                        latitude: point.geojson.geometry.coordinates[1],
+                        longitude: point.geojson.geometry.coordinates[0]
                     }
                 }
             });
