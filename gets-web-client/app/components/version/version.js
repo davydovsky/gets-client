@@ -1,8 +1,10 @@
-'use strict';
+(function() {
+    'use strict';
 
-angular.module('geTSWebClient.version', [
-    'geTSWebClient.version.interpolate-filter',
-    'geTSWebClient.version.version-directive'
-])
+    angular.module('geTSWebClient.version', [
+        'geTSWebClient.version.interpolate-filter',
+        'geTSWebClient.version.version-directive'
+    ])
 
-.value('version', '0.0.1');
+    .value('version', '0.0.1');
+})();

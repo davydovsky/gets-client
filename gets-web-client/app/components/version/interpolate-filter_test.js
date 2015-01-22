@@ -1,7 +1,7 @@
 'use strict';
 
 describe('geTSWebClient.version module', function () {
-    beforeEach(module('myApp.version'));
+    beforeEach(module('geTSWebClient.version'));
 
     describe('interpolate filter', function () {
         beforeEach(module(function ($provide) {

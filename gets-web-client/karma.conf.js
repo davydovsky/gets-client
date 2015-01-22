@@ -7,8 +7,9 @@ module.exports = function (config) {
             'app/bower_components/angular-mocks/angular-mocks.js',
             'app/bower_components/x2js/xml2json.js',
             'app/bower_components/angular-xml/angular-xml.js',
+            'app/config.service.js',
             'app/components/**/*.js',
-            'app/view*/**/*.js'
+            'app/view*/**/*.js'          
         ],
         autoWatch: true,
         frameworks: ['jasmine'],

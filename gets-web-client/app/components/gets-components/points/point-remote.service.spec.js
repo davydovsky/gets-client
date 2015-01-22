@@ -18,7 +18,12 @@ describe('Point Remote Service', function () {
         geojson: {
             type: "Feature",
             properties: {
-                name: 'New point'
+                name: 'New point',
+                uuid: 'some-uuid',
+                parent: {
+                    type: 'category_id',
+                    name: 123
+                }
             },
             geometry: {
                 type: "Point",
@@ -32,7 +37,7 @@ describe('Point Remote Service', function () {
     };    
 
     // load modules
-    beforeEach(module('pointRemoteService'));
+    beforeEach(module('geTSWebClient.pointRemoteService'));
     
     // Add mock dependencies for angular-xml and config services
     beforeEach(function () {      
@@ -90,21 +95,7 @@ describe('Point Remote Service', function () {
                         }
                     });
 
-            var promise = pointRemoteService.addPoint({
-                geojson: {
-                    type: "Feature",
-                    properties: {
-                        name: 'New point'
-                    },
-                    geometry: {
-                        type: "Point",
-                        coordinates: [
-                            54.11,
-                            45.11
-                        ]
-                    }
-                }
-            });
+            var promise = pointRemoteService.addPoint(pointExample);
                             
             mock_http.flush();
             expect(
@@ -129,6 +120,102 @@ describe('Point Remote Service', function () {
                     });
 
             var promise = pointRemoteService.addPoint(pointExample);
+            
+            var response;
+                
+            promise.success(function (data) {
+                response = data;
+            });
+            
+            mock_http.flush();
+            expect(angular.isObject(response)).toBeTruthy();    
+        });
+    });
+    
+    describe('updatePoint', function () {
+        it('should check that updatePoint returns $http promise', function () {
+            mock_http
+                    .expectPOST('http://localhost/gets/service/updatePoint.php')
+                    .respond({
+                        status: {
+                            code: 0,
+                            message: "success"
+                        }
+                    });
+
+            var promise = pointRemoteService.updatePoint(pointExample);
+                            
+            mock_http.flush();
+            expect(
+                    angular.isObject(promise) &&
+                    promise.then instanceof Function && 
+                    promise["catch"] instanceof Function && 
+                    promise["finally"] instanceof Function && 
+                    promise.error instanceof Function && 
+                    promise.success instanceof Function
+            )
+            .toBeTruthy();    
+        });
+        
+        it('should check that HTTP POST request in updatePoint returns object', function () {
+            mock_http
+                    .expectPOST('http://localhost/gets/service/updatePoint.php')
+                    .respond({
+                        status: {
+                            code: 0,
+                            message: "success"
+                        }
+                    });
+
+            var promise = pointRemoteService.updatePoint(pointExample);
+            
+            var response;
+                
+            promise.success(function (data) {
+                response = data;
+            });
+            
+            mock_http.flush();
+            expect(angular.isObject(response)).toBeTruthy();    
+        });
+    });
+    
+    describe('deletePoint', function () {
+        it('should check that deletePoint returns $http promise', function () {
+            mock_http
+                    .expectPOST('http://localhost/gets/service/deletePoint.php')
+                    .respond({
+                        status: {
+                            code: 0,
+                            message: "success"
+                        }
+                    });
+
+            var promise = pointRemoteService.deletePoint(pointExample);
+                            
+            mock_http.flush();
+            expect(
+                    angular.isObject(promise) &&
+                    promise.then instanceof Function && 
+                    promise["catch"] instanceof Function && 
+                    promise["finally"] instanceof Function && 
+                    promise.error instanceof Function && 
+                    promise.success instanceof Function
+            )
+            .toBeTruthy();    
+        });
+        
+        it('should check that HTTP POST request in deletePoint returns object', function () {
+            mock_http
+                    .expectPOST('http://localhost/gets/service/deletePoint.php')
+                    .respond({
+                        status: {
+                            code: 0,
+                            message: "success"
+                        }
+                    });
+
+            var promise = pointRemoteService.deletePoint(pointExample);
             
             var response;
                 
